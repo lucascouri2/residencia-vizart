@@ -1,4 +1,4 @@
-r,g,b
+nome,r,g,b
 white,255,255,255
 ivory,255,244,216
 cream,255,241,182
@@ -94,10 +94,12 @@ Naplesyellow,248,210,90
 darkNaplesochre,245,194,91
 greengold,202,148,57
 brownochre,196,146,93
+gold,205,192,141
 rawumber,154,115,74
 bistre,124,96,76
 VanDyckbrown,108,89,84
 nougat,146,124,107
+copper,176,144,146
 burntumber,104,85,70
 burntsiena,137,90,71
 walnutbrown,93,79,72
@@ -111,11 +113,10 @@ warmgreyI,217,208,206
 coldgreyI,202,209,216
 coldgreyII,190,196,204
 coldgreyIII,172,177,184
+silver,171,173,176
 coldgreyIV,142,178,152
 coldgreyV,110,113,118
 coldgreyVI,87,87,88
 Payne´sgrey,72,78,85
 black,5,5,5
-silver,171,173,176
-gold,205,192,141
-copper,176,144,146
+
