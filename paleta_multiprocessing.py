@@ -26,7 +26,7 @@ def extratorPaleta(filePath, id):
     df['g_whiten'] = whiten(df['g'])
     df['b_whiten'] = whiten(df['b'])
 
-    kmeans = KMeans(n_clusters=5, random_state=0).fit(df[['r_whiten', 'g_whiten', 'b_whiten']])
+    kmeans = KMeans(n_clusters=10, random_state=0).fit(df[['r_whiten', 'g_whiten', 'b_whiten']])
 
     cluster_centers = kmeans.cluster_centers_
 
