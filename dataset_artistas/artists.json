@@ -1,0 +1,57 @@
+[
+    {
+        "contentId": 223667,
+        "artistName": "Pablo Picasso",
+        "url": "pablo-picasso",
+        "lastNameFirst": "Picasso Pablo",
+        "birthDay": "/Date(-2782857600000)/",
+        "deathDay": "/Date(103075200000)/",
+        "birthDayAsString": "October 25, 1881",
+        "deathDayAsString": "April 8, 1973",
+        "image": "https://uploads4.wikiart.org/00115/images/pablo-picasso/iuyqtex0.jpeg!Portrait.jpeg",
+        "wikipediaUrl": "https://en.wikipedia.org/wiki/Pablo_Picasso",
+        "dictonaries": [
+            322,
+            876,
+            309,
+            317,
+            2165,
+            336
+        ]
+    },
+        {
+            "contentId": 188828,
+            "artistName": "Sandro Botticelli",
+            "url": "sandro-botticelli",
+            "lastNameFirst": "Botticelli Sandro ",
+            "birthDay": "/Date(-16567372800000)/",
+            "deathDay": "/Date(-14504486400000)/",
+            "birthDayAsString": "c.1445",
+            "deathDayAsString": "May 17, 1510",
+            "image": "https://uploads0.wikiart.org/images/sandro-botticelli.jpg!Portrait.jpg",
+            "wikipediaUrl": "http://en.wikipedia.org/wiki/Sandro_Botticelli",
+            "dictonaries": [
+                302,
+                2451,
+                925
+            ]
+        }
+        ,
+        {
+            "contentId": 229251,
+            "artistName": "Andy Warhol",
+            "url": "andy-warhol",
+            "lastNameFirst": "Warhol Andy",
+            "birthDay": "/Date(-1306627200000)/",
+            "deathDay": "/Date(540950400000)/",
+            "birthDayAsString": "August 6, 1928",
+            "deathDayAsString": "February 22, 1987",
+            "image": "https://uploads3.wikiart.org/images/andy-warhol.jpg!Portrait.jpg",
+            "wikipediaUrl": "http://en.wikipedia.org/wiki/Andy_Warhol",
+            "dictonaries": [
+                1368,
+                363,
+                0
+            ]
+        }
+]
