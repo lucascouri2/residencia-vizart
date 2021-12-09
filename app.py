@@ -9,6 +9,8 @@ import plotly.express as px
 import pandas as pd
 import generoVis 
 import estiloVis
+import paleta2Vis
+import paleta1Vis
 
 app = dash.Dash(__name__)
 
@@ -84,9 +86,9 @@ app.layout = html.Div(style={'backgroundColor': colors['background']}, children=
 def update_graph(dropdown_artista, dropdown_visualizacao):
 
     if(dropdown_visualizacao == 'paleta1'):
-        return 
+        return paleta1Vis.getPaletaGeral(dropdown_artista)
     elif(dropdown_visualizacao == 'paleta2'):
-        return 
+        return paleta2Vis.getPaletaPorAno(dropdown_artista)
     elif(dropdown_visualizacao == 'estilo'):
         return estiloVis.func_estilo(dropdown_artista)
     elif(dropdown_visualizacao == 'genero'):
