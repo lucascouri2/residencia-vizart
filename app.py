@@ -8,6 +8,7 @@ from dash.dependencies import Input, Output
 import plotly.express as px
 import pandas as pd
 import generoVis 
+import estiloVis
 
 app = dash.Dash(__name__)
 
@@ -59,7 +60,7 @@ app.layout = html.Div(style={'backgroundColor': colors['background']}, children=
             dcc.Dropdown(
                 id='dropdown_visualizacao',
                 options=[{'label': i, 'value': i} for i in listaVisualizacoes],
-                value='paleta1'
+                value='genero'#value='paleta1'
             )
         ], style={'width': '48%', 'float': 'right', 'display': 'inline-block'})
     ]),
@@ -87,7 +88,7 @@ def update_graph(dropdown_artista, dropdown_visualizacao):
     elif(dropdown_visualizacao == 'paleta2'):
         return 
     elif(dropdown_visualizacao == 'estilo'):
-        return 
+        return estiloVis.func_estilo(dropdown_artista)
     elif(dropdown_visualizacao == 'genero'):
         return generoVis.func_genero(dropdown_artista)
 
