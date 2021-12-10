@@ -88,7 +88,7 @@ def update_graph(dropdown_artista, dropdown_visualizacao, clickData):
 
     if(dropdown_visualizacao == 'paleta1'):
         return paleta1Vis.getPaletaGeral(dropdown_artista)
-    if(dropdown_visualizacao == 'paleta2'):
+    elif(dropdown_visualizacao == 'paleta2'):
         if(clickData is None):
             return paleta2Vis.getPaletaPorAno(dropdown_artista)
         else:
