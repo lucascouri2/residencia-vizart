@@ -55,7 +55,7 @@ class Paleta2Vis:
     def gerarFigura(self,coordenadas):
         fig = go.Figure()
         for x, y, color, selecionado in coordenadas:
-
+            
             opacity = 1
             if(self.selecaoAtiva):
                 opacity = 1 if selecionado else .4
@@ -66,7 +66,9 @@ class Paleta2Vis:
                     mode='markers',
                     x=[x],
                     y=[y],
-                    hovertemplate = 'Ano: %{x}',#'Ano: %{x}<br>RGB: %{color}',
+                    hovertemplate = 'Ano: %{x}<br>RGB: %{text}',#'Ano: %{x}<br>RGB: %{cor}',
+                    text = [color],
+                    #text = ['Custom text {}'.format(i + 1) for i in range(5)],
                     marker_symbol='square',
                     marker=dict(
                         color= color,
