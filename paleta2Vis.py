@@ -34,6 +34,7 @@ def getPaletaPorAno(nomeArtista):
                 mode='markers',
                 x=[x],
                 y=[y],
+                hovertemplate = 'Ano: %{x}<br>RGB: %{color}',
                 marker_symbol='square',
                 marker=dict(
                     color= color,
@@ -43,7 +44,8 @@ def getPaletaPorAno(nomeArtista):
                     #     width=1
                     # )
                 ),
-                showlegend=False
+                showlegend=False,
+                name = ''
             )
         )
 
@@ -55,6 +57,7 @@ def getPaletaPorAno(nomeArtista):
         title=titulo,
         xaxis_title=eixox,
         yaxis_title=eixoy,
+        plot_bgcolor='rgba(0,0,0,0)',
         #legend_title=legenda,
         font=dict(
             family="Courier New, monospace",
@@ -76,6 +79,7 @@ def getPaletaPorAnoSelected(nomeArtista, ano):
                 mode='markers',
                 x=[x],
                 y=[y],
+                hovertemplate = 'Ano: %{x}<br>RGB: %{y}',
                 marker_symbol='square',
                 marker=dict(
                     color= color,
@@ -85,7 +89,8 @@ def getPaletaPorAnoSelected(nomeArtista, ano):
                     #     width=1
                     # )
                 ),
-                showlegend=False
+                showlegend=False,
+                name = ''
             )
         )
 
@@ -97,6 +102,7 @@ def getPaletaPorAnoSelected(nomeArtista, ano):
         title=titulo,
         xaxis_title=eixox,
         yaxis_title=eixoy,
+        plot_bgcolor='rgba(0,0,0,0)',
         #legend_title=legenda,
         font=dict(
             family="Courier New, monospace",
@@ -105,4 +111,6 @@ def getPaletaPorAnoSelected(nomeArtista, ano):
         )
     )
 
+    fig.update_yaxes(showticklabels=False, visible=False)#fig.update_yaxes(matches=None, showticklabels=True, visible=True)
+    
     return fig

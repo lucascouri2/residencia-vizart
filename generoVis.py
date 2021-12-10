@@ -43,7 +43,8 @@ def func_genero(artista = 'van Gogh Vincent '):
         y = dfGenero['count'].to_list()
         fig.add_trace(go.Scatter(
             x=x, y=y,
-            hoverinfo='x+y',
+            #hoverinfo='x+y',
+            hovertemplate = 'Proporção: %{y:.2f}%',#'Ano: %{x}<br>Proporção: %{y:.2f}%'
             mode='lines',
             line=dict(width=0.5, color=paletaCores[i]),
             fillcolor = paletaCores[i],
@@ -60,6 +61,8 @@ def func_genero(artista = 'van Gogh Vincent '):
         title=titulo,
         xaxis_title=eixox,
         yaxis_title=eixoy,
+        yaxis_range=(0, 100),
+        hovermode='x',
         legend_title=legenda,
         font=dict(
             family="Courier New, monospace",
@@ -68,7 +71,6 @@ def func_genero(artista = 'van Gogh Vincent '):
         )
     )
 
-    fig.update_layout(yaxis_range=(0, 100))
     return fig
     # fig.update_layout(yaxis_range=(0, 100))
     # fig.show()

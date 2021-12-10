@@ -22,6 +22,7 @@ def getPaletaGeral(nomeArtista):
     for index in range(len(freqAnosArray)):
 
         fig.add_trace(go.Scatter(
+            name='',
             x=x, y=freqAnosArray[index],
             hovertemplate = 'Ano: %{x}<br>Proporção: %{y:.2f}%',
             mode='lines',
@@ -34,13 +35,13 @@ def getPaletaGeral(nomeArtista):
     titulo='Paleta de cores ao longo dos anos'
     eixox='Ano'
     eixoy='Proporção das cores'
-    legenda='Cores'
+    #legenda='Cores'
     fig.update_layout(
         title=titulo,
         xaxis_title=eixox,
         yaxis_title=eixoy,
-        legend_title=legenda,
-        showlegend=True,
+        #legend_title=legenda,
+        showlegend=False,
         xaxis_type='category',
         font=dict(
             family="Courier New, monospace",

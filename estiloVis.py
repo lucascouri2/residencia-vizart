@@ -38,6 +38,7 @@ def func_estilo(artista = 'van Gogh Vincent '):
 
     fig.update_layout(
     #font_family="Courier New, monospace",
+    plot_bgcolor='rgba(0,0,0,0)',
     font=dict(
             family="Courier New, monospace",
             size=18,

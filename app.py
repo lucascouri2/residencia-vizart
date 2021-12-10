@@ -22,9 +22,12 @@ colors = {
     'text': '#7FDBFF'
 }
 
-listaArtistas = ['van Gogh Vincent ', 'Picasso Pablo', 'Mondrian Piet', 'Kahlo Frida ', 'Warhol Andy', 'Botticelli Sandro ']
+#listaArtistas = ['van Gogh Vincent ', 'Picasso Pablo', 'Mondrian Piet', 'Kahlo Frida ', 'Warhol Andy', 'Botticelli Sandro ']
+listaArtistas = [ ['van Gogh Vincent ','Vincent van Gogh'], ['Picasso Pablo', 'Pablo Picasso '], ['Mondrian Piet', 'Piet Mondrian'], ['Kahlo Frida ','Frida Kahlo'], ['Warhol Andy','Andy Warhol'], ['Botticelli Sandro ', 'Sandro Botticelli']]
 
-listaVisualizacoes = ['paleta1', 'paleta2', 'estilo', 'genero']
+
+#listaVisualizacoes = ['paleta1', 'paleta2', 'estilo', 'genero']
+listaVisualizacoes = [ ['paleta1', 'Paleta de cores 1'], ['paleta2', 'Paleta de cores 2'] , ['estilo', 'Estilos das obras'], ['genero', 'Gêneros das obras']]
 
 # # assume you have a "long-form" data frame
 # # see https://plotly.com/python/px-arguments/ for more options
@@ -66,7 +69,8 @@ app.layout = html.Div(children=[
         html.Div([
             dcc.Dropdown(
                 id='dropdown_artista',
-                options=[{'label': i, 'value': i} for i in listaArtistas],
+                #options=[{'label': i, 'value': i} for i in listaArtistas],
+                options=[{'label': j, 'value': i} for i,j in listaArtistas],
                 value='van Gogh Vincent '
             )
         ], style={'width': '48%', 'display': 'inline-block'}),
@@ -74,7 +78,8 @@ app.layout = html.Div(children=[
         html.Div([
             dcc.Dropdown(
                 id='dropdown_visualizacao',
-                options=[{'label': i, 'value': i} for i in listaVisualizacoes],
+                #options=[{'label': i, 'value': i} for i in listaVisualizacoes],
+                options=[{'label': j, 'value': i} for i, j in listaVisualizacoes],
                 value='genero'#value='paleta1'
             )
         ], style={'width': '48%', 'float': 'right', 'display': 'inline-block'})
