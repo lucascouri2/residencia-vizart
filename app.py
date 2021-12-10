@@ -10,6 +10,7 @@ import pandas as pd
 import generoVis 
 import paleta2Vis
 import paleta1Vis
+import json
 
 app = dash.Dash(__name__)
 
@@ -66,7 +67,7 @@ app.layout = html.Div(style={'backgroundColor': colors['background']}, children=
         ], style={'width': '48%', 'float': 'right', 'display': 'inline-block'})
     ]),
 
-    html.Div(children='Dash: A web application framework for your data.', style={
+    html.Div([html.Pre(id='hover-data')], style={
         'textAlign': 'center',
         'color': colors['text']
     }),
@@ -81,18 +82,37 @@ app.layout = html.Div(style={'backgroundColor': colors['background']}, children=
 @app.callback(
     Output('visualizacao', 'figure'),
     Input('dropdown_artista', 'value'),
-    Input('dropdown_visualizacao', 'value'))
-def update_graph(dropdown_artista, dropdown_visualizacao):
+    Input('dropdown_visualizacao', 'value'),
+    Input('visualizacao', 'clickData'))
+def update_graph(dropdown_artista, dropdown_visualizacao, clickData):
 
     if(dropdown_visualizacao == 'paleta1'):
         return paleta1Vis.getPaletaGeral(dropdown_artista)
     if(dropdown_visualizacao == 'paleta2'):
-        return paleta2Vis.getPaletaPorAno(dropdown_artista)
+        if(clickData is None):
+            return paleta2Vis.getPaletaPorAno(dropdown_artista)
+        else:
+            print(clickData)
+            return paleta2Vis.getPaletaPorAnoSelected(dropdown_artista, clickData['points'][0]['x'])
     # elif(dropdown_visualizacao == 'estilo'):
         # return 
     elif(dropdown_visualizacao == 'genero'):
         return generoVis.func_genero(dropdown_artista)
 
+
+@app.callback(
+    Output('hover-data', 'children'),
+    Input('visualizacao', 'clickData'))
+def display_hover_data(hoverData):
+    return json.dumps(hoverData, indent=2)
+
+
+# @app.callback(
+#     Output('visualizacao', 'figure'),
+#     Input('visualizacao', 'clickData'),
+#     Input('dropdown_artista', 'value'))
+# def update_graph_onclick(clickData, dropdown_artista):
+#     return paleta2Vis.getPaletaPorAnoSelected(dropdown_artista, clickData.x)
 
 if __name__ == '__main__':
     app.run_server(debug=True)
