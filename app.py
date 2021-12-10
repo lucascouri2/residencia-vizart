@@ -158,7 +158,8 @@ def display_images(clickData, dropdown_artista):
     if(clickData is None or (not paleta2Vis.selecaoAtiva)):
         return []
     else:
-        listPaths = funcoes.getPaths(dropdown_artista, clickData['points'][0]['x'])
+        dfPaths = funcoes.getPaths(dropdown_artista, clickData['points'][0]['x']) #dfPaths tem titulo, estilo, genero e path
+        listPaths = dfPaths['path'] #pega só o path
         return renderImages(listPaths)
 
 @app.callback(
