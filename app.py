@@ -52,7 +52,7 @@ def renderImages(listImages):
          className = 'div-image'))
     return divList
 
-app.layout = html.Div(style={'backgroundColor': colors['background']}, children=[
+app.layout = html.Div(children=[
     html.H1(
         children='Hello Dash',
         style={
