@@ -48,7 +48,7 @@ def renderImages(listImages):
     for img in listImages:
         print(img)
         encoded_image = base64.b64encode(open(img, 'rb').read())
-        divList.append(html.Div([html.Img(src='data:image/jpg;base64,{}'.format(encoded_image.decode(), className = 'image-workart'))],
+        divList.append(html.Div([html.Img(src='data:image/jpg;base64,{}'.format(encoded_image.decode()), className = 'image-workart')],
          className = 'div-image'))
     return divList
 
