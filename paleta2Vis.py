@@ -2,6 +2,7 @@ import pandas as pd
 from pandas.core.frame import DataFrame
 import plotly.graph_objects as go
 #from colormap import rgb2hex, hex2rgb, rgb2hsv
+from PIL import ImageColor
 
 class Paleta2Vis:
 
@@ -56,6 +57,7 @@ class Paleta2Vis:
         fig = go.Figure()
         for x, y, color, selecionado in coordenadas:
             
+            cor_rgb = ImageColor.getcolor(color, "RGB")
             opacity = 1
             if(self.selecaoAtiva):
                 opacity = 1 if selecionado else .4
@@ -67,7 +69,7 @@ class Paleta2Vis:
                     x=[x],
                     y=[y],
                     hovertemplate = 'Ano: %{x}<br>RGB: %{text}',#'Ano: %{x}<br>RGB: %{cor}',
-                    text = [color],
+                    text = [cor_rgb], #se quiser o hexa é só usar [color]
                     #text = ['Custom text {}'.format(i + 1) for i in range(5)],
                     marker_symbol='square',
                     marker=dict(
