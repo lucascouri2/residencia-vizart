@@ -19,7 +19,7 @@ def calculateCordenadasSelecao(dfPaletaAnos, ano):
     copyDf['ordemVis'] = x
     copyDf.loc[copyDf['completitionYear'] == ano, 'hex'] = '#000000'
     retorno = list(copyDf[['completitionYear','ordemVis','hex']].to_records(index=False))
-    print(retorno)
+    #print(retorno)
     return retorno
 
 # Cria a visualizacao do plotly

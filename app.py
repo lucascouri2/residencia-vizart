@@ -11,7 +11,9 @@ import generoVis
 import estiloVis
 import paleta2Vis
 import paleta1Vis
+import funcoes
 import json
+import base64
 
 app = dash.Dash(__name__)
 
@@ -39,6 +41,16 @@ listaVisualizacoes = ['paleta1', 'paleta2', 'estilo', 'genero']
 #     paper_bgcolor=colors['background'],
 #     font_color=colors['text']
 # )
+
+
+def renderImages(listImages):
+    divList = []
+    for img in listImages:
+        print(img)
+        encoded_image = base64.b64encode(open(img, 'rb').read())
+        divList.append(html.Div([html.Img(src='data:image/jpg;base64,{}'.format(encoded_image.decode(), className = 'image-workart'))],
+         className = 'div-image'))
+    return divList
 
 app.layout = html.Div(style={'backgroundColor': colors['background']}, children=[
     html.H1(
@@ -76,8 +88,14 @@ app.layout = html.Div(style={'backgroundColor': colors['background']}, children=
     dcc.Graph(
         id='visualizacao'
         #figure=generoVis.func_genero()
-    )
+    ),
+
+    html.Div(id='image-container')
 ])
+
+
+
+
 
 
 @app.callback(
@@ -98,14 +116,23 @@ def update_graph(dropdown_artista, dropdown_visualizacao, clickData):
     elif(dropdown_visualizacao == 'estilo'):
         return estiloVis.func_estilo(dropdown_artista)
     elif(dropdown_visualizacao == 'genero'):
-        return generoVis.func_genero(dropdown_artista)
+        if(clickData is None):
+            return generoVis.func_genero(dropdown_artista)
+        else:
+            print(clickData)
+            return generoVis.func_genero(dropdown_artista)
 
 
 @app.callback(
-    Output('hover-data', 'children'),
-    Input('visualizacao', 'clickData'))
-def display_hover_data(hoverData):
-    return json.dumps(hoverData, indent=2)
+    Output('image-container', 'children'),
+    Input('visualizacao', 'clickData'),
+    Input('dropdown_artista', 'value'))
+def display_images(clickData, dropdown_artista):
+    if(clickData is None):
+        return []
+    else:
+        listPaths = funcoes.getPaths(dropdown_artista, clickData['points'][0]['x'])
+        return renderImages(listPaths)
 
 
 # @app.callback(

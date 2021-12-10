@@ -1,0 +1,23 @@
+#image-container {
+    height:150px;
+    width:400px; 
+      border:10px solid black;
+      text-align:left;
+      white-space: nowrap;
+      overflow-y:hidden;
+}
+    
+.div-image{
+    /* width:102px;
+    height:100 !important; */
+    margin:2px;
+    display: inline-block;
+    overflow:hidden;
+    margin-left:8px;
+    vertical-align:middle;
+}
+
+.image-workart{
+    width: auto; 
+    height: 144px;
+}
