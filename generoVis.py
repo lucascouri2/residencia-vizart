@@ -34,7 +34,8 @@ def func_genero(artista = 'van Gogh Vincent '):
     x.sort()
 
     generos = dfVis['genre'].unique()
-    paletaCores = ['#f44336', '#e91e63', '#9c27b0', '#673ab7', '#3f51b5', '#2196f3', '#ffeb3b','#009688', '#ffc107','#03a9f4','#8bc34a','#ff9800','#00bcd4','#cddc39','#ff5722', '#f44336', '#e91e63' ]
+    #paletaCores = ['#f44336', '#e91e63', '#9c27b0', '#673ab7', '#3f51b5', '#2196f3', '#ffeb3b','#009688', '#ffc107','#03a9f4','#8bc34a','#ff9800','#00bcd4','#cddc39','#ff5722', '#f44336', '#e91e63' ]
+    paletaCores = ['#636EFA', '#EF553B', '#00CC96', '#AB63FA', '#FFA15A', '#19D3F3', '#FF6692', '#B6E880', '#FF97FF', '#FECB52']
     fig = go.Figure()
 
     for i, genero in zip(range(0, len(generos)), generos):      
@@ -46,6 +47,7 @@ def func_genero(artista = 'van Gogh Vincent '):
             #hoverinfo='x+y',
             hovertemplate = 'Proporção: %{y:.2f}%',#'Ano: %{x}<br>Proporção: %{y:.2f}%'
             mode='lines',
+            opacity=0.5,
             line=dict(width=0.5, color=paletaCores[i]),
             fillcolor = paletaCores[i],
             stackgroup='one', # define stack group
@@ -53,7 +55,7 @@ def func_genero(artista = 'van Gogh Vincent '):
             name = genero
     ))
     
-    titulo='Gênero ao longo dos anos'
+    titulo='Gêneros ao longo dos anos'
     eixox='Ano'
     eixoy='Proporção dos gêneros'
     legenda='Gênero'
