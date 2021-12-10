@@ -9,7 +9,7 @@ import plotly.express as px
 import pandas as pd
 import generoVis 
 import estiloVis
-import paleta2Vis
+from paleta2Vis import Paleta2Vis
 import paleta1Vis
 import funcoes
 import json
@@ -25,6 +25,8 @@ colors = {
 listaArtistas = ['van Gogh Vincent ', 'Picasso Pablo', 'Mondrian Piet', 'Kahlo Frida ', 'Warhol Andy', 'Botticelli Sandro ']
 
 listaVisualizacoes = ['paleta1', 'paleta2', 'estilo', 'genero']
+
+paleta2Vis = Paleta2Vis()
 
 # # assume you have a "long-form" data frame
 # # see https://plotly.com/python/px-arguments/ for more options
@@ -113,11 +115,22 @@ def update_graph(dropdown_artista, dropdown_visualizacao, clickData):
     if(dropdown_visualizacao == 'paleta1'):
         return paleta1Vis.getPaletaGeral(dropdown_artista)
     elif(dropdown_visualizacao == 'paleta2'):
+        
         if(clickData is None):
-            return paleta2Vis.getPaletaPorAno(dropdown_artista)
+            return paleta2Vis.getPaletaPorAnoSelected(dropdown_artista,0)
         else:
-            print(clickData)
-            return paleta2Vis.getPaletaPorAnoSelected(dropdown_artista, clickData['points'][0]['x'])
+            print('Nao')
+            ano = clickData['points'][0]['x']
+            print('click ano', ano)
+            print('paleta ano', paleta2Vis.ano)
+            if(paleta2Vis.ano == ano):
+                print('ano = ano')
+                paleta2Vis.selecaoAtiva = False
+                return paleta2Vis.getPaletaPorAnoSelected(dropdown_artista,0)
+            else:
+                paleta2Vis.selecaoAtiva = True
+                vis = paleta2Vis.getPaletaPorAnoSelected(dropdown_artista, clickData['points'][0]['x'])
+            return vis
     elif(dropdown_visualizacao == 'estilo'):
         if(clickData is None):
             return estiloVis.func_estilo(dropdown_artista)
@@ -137,7 +150,7 @@ def update_graph(dropdown_artista, dropdown_visualizacao, clickData):
     Input('visualizacao', 'clickData'),
     Input('dropdown_artista', 'value'))
 def display_images(clickData, dropdown_artista):
-    if(clickData is None):
+    if(clickData is None or (not paleta2Vis.selecaoAtiva)):
         return []
     else:
         listPaths = funcoes.getPaths(dropdown_artista, clickData['points'][0]['x'])
@@ -147,7 +160,7 @@ def display_images(clickData, dropdown_artista):
     Output('titulo-imagem-container', 'children'),
     Input('visualizacao', 'clickData'))
 def display_titulo_imagens(clickData):
-    if(clickData is None):
+    if(clickData is None or (not paleta2Vis.selecaoAtiva)):
         return []
     else:
         ano = clickData['points'][0]['x']
