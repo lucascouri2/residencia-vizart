@@ -48,8 +48,25 @@ def func_genero(artista = 'van Gogh Vincent '):
             line=dict(width=0.5, color=paletaCores[i]),
             fillcolor = paletaCores[i],
             stackgroup='one', # define stack group
-            groupnorm='percent'
+            groupnorm='percent', 
+            name = genero
     ))
+    
+    titulo='Gênero ao longo dos anos'
+    eixox='Ano'
+    eixoy='Proporção'
+    legenda='Gêneros'
+    fig.update_layout(
+        title=titulo,
+        xaxis_title=eixox,
+        yaxis_title=eixoy,
+        legend_title=legenda,
+        font=dict(
+            family="Courier New, monospace",
+            size=18,
+            color="RebeccaPurple"
+        )
+    )
 
     return fig
     # fig.update_layout(yaxis_range=(0, 100))
