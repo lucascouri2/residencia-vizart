@@ -1,7 +1,7 @@
 import pandas as pd
 from pandas.core.frame import DataFrame
 import plotly.graph_objects as go
-from colormap import rgb2hex, hex2rgb, rgb2hsv
+#from colormap import rgb2hex, hex2rgb, rgb2hsv
 
 class Paleta2Vis:
 
@@ -62,9 +62,11 @@ class Paleta2Vis:
 
             fig.add_trace(
                 go.Scatter(
+                    name = '',
                     mode='markers',
                     x=[x],
                     y=[y],
+                    hovertemplate = 'Ano: %{x}',#'Ano: %{x}<br>RGB: %{color}',
                     marker_symbol='square',
                     marker=dict(
                         color= color,
@@ -78,12 +80,11 @@ class Paleta2Vis:
         titulo='Paleta de cores ao longo dos anos'
         eixox='Ano'
         eixoy='Cores'
-        #legenda='Gêneros'
         fig.update_layout(
             title=titulo,
             xaxis_title=eixox,
             yaxis_title=eixoy,
-            #legend_title=legenda,
+            plot_bgcolor='rgba(0,0,0,0)',
             font=dict(
                 family="Courier New, monospace",
                 size=18,
