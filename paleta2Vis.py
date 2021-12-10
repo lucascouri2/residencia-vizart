@@ -86,6 +86,8 @@ class Paleta2Vis:
             title=titulo,
             xaxis_title=eixox,
             yaxis_title=eixoy,
+            #yaxis_visible=False, 
+            yaxis_showticklabels=False,
             plot_bgcolor='rgba(0,0,0,0)',
             font=dict(
                 family="Courier New, monospace",
