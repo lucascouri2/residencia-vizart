@@ -1,17 +1,21 @@
-#image-container {
-    height:150px;
-    width: 100%;
-    margin: 0;
-    padding: 0;
-    border:10px solid black;
-    text-align:left;
+#image-sub-container {
+    height:180px;
+    width: 90%;
+    margin: 0 auto 50px;
+    border:10px;
     white-space: nowrap;
     overflow-y:hidden;
 }
+
+#titulo-imagem-container{
+    text-align: center
+}
+
+#titulo-imagem{
+    margin-top: 0;
+}
     
 .div-image{
-    /* width:102px;
-    height:100 !important; */
     margin:2px;
     display: inline-block;
     overflow:hidden;

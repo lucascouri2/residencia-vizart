@@ -52,7 +52,7 @@ def renderImages(listImages):
          className = 'div-image'))
     return divList
 
-app.layout = html.Div(style={'backgroundColor': colors['background']}, children=[
+app.layout = html.Div(children=[
     html.H1(
         children='Hello Dash',
         style={
@@ -90,7 +90,12 @@ app.layout = html.Div(style={'backgroundColor': colors['background']}, children=
         #figure=generoVis.func_genero()
     ),
 
-    html.Div(id='image-container')
+    html.Div(id = 'image-container',
+        children = [
+            html.Div(id='titulo-imagem-container'),
+            html.Div(id='image-sub-container')]
+    )
+    
 ])
 
 
@@ -128,7 +133,7 @@ def update_graph(dropdown_artista, dropdown_visualizacao, clickData):
 
 
 @app.callback(
-    Output('image-container', 'children'),
+    Output('image-sub-container', 'children'),
     Input('visualizacao', 'clickData'),
     Input('dropdown_artista', 'value'))
 def display_images(clickData, dropdown_artista):
@@ -137,6 +142,18 @@ def display_images(clickData, dropdown_artista):
     else:
         listPaths = funcoes.getPaths(dropdown_artista, clickData['points'][0]['x'])
         return renderImages(listPaths)
+
+@app.callback(
+    Output('titulo-imagem-container', 'children'),
+    Input('visualizacao', 'clickData'))
+def display_titulo_imagens(clickData):
+    if(clickData is None):
+        return []
+    else:
+        ano = clickData['points'][0]['x']
+        return html.H1(id='titulo-imagem',
+        children= ano
+        )
 
 
 # @app.callback(
