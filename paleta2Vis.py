@@ -47,6 +47,22 @@ def getPaletaPorAno(nomeArtista):
             )
         )
 
+    titulo='Paleta de cores ao longo dos anos'
+    eixox='Ano'
+    eixoy='Cores'
+    #legenda='Gêneros'
+    fig.update_layout(
+        title=titulo,
+        xaxis_title=eixox,
+        yaxis_title=eixoy,
+        #legend_title=legenda,
+        font=dict(
+            family="Courier New, monospace",
+            size=18,
+            color="RebeccaPurple"
+        )
+    )
+
     return fig
 
 def getPaletaPorAnoSelected(nomeArtista, ano):
@@ -72,5 +88,21 @@ def getPaletaPorAnoSelected(nomeArtista, ano):
                 showlegend=False
             )
         )
+
+    titulo='Paleta de cores ao longo dos anos'
+    eixox='Ano'
+    eixoy='Cores'
+    #legenda='Gêneros'
+    fig.update_layout(
+        title=titulo,
+        xaxis_title=eixox,
+        yaxis_title=eixoy,
+        #legend_title=legenda,
+        font=dict(
+            family="Courier New, monospace",
+            size=18,
+            color="RebeccaPurple"
+        )
+    )
 
     return fig

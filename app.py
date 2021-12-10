@@ -114,7 +114,11 @@ def update_graph(dropdown_artista, dropdown_visualizacao, clickData):
             print(clickData)
             return paleta2Vis.getPaletaPorAnoSelected(dropdown_artista, clickData['points'][0]['x'])
     elif(dropdown_visualizacao == 'estilo'):
-        return estiloVis.func_estilo(dropdown_artista)
+        if(clickData is None):
+            return estiloVis.func_estilo(dropdown_artista)
+        else:
+            print(clickData)
+            return estiloVis.func_estilo(dropdown_artista)
     elif(dropdown_visualizacao == 'genero'):
         if(clickData is None):
             return generoVis.func_genero(dropdown_artista)

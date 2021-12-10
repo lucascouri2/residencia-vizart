@@ -54,8 +54,8 @@ def func_genero(artista = 'van Gogh Vincent '):
     
     titulo='Gênero ao longo dos anos'
     eixox='Ano'
-    eixoy='Proporção'
-    legenda='Gêneros'
+    eixoy='Proporção dos gêneros'
+    legenda='Gênero'
     fig.update_layout(
         title=titulo,
         xaxis_title=eixox,
@@ -68,6 +68,7 @@ def func_genero(artista = 'van Gogh Vincent '):
         )
     )
 
+    fig.update_layout(yaxis_range=(0, 100))
     return fig
     # fig.update_layout(yaxis_range=(0, 100))
     # fig.show()

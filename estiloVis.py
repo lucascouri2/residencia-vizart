@@ -33,6 +33,7 @@ def func_estilo(artista = 'van Gogh Vincent '):
                      "count": "Quantidade",
                      "style": "Estilo"
                  },
+                #hover_name="Estilo", hover_data="style",
                 title="Estilo ao longo dos anos")
 
     fig.update_layout(
