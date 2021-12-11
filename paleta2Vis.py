@@ -42,12 +42,13 @@ class Paleta2Vis:
 
     #Criar visualizacao com click
     def getPaletaPorAnoSelected(self,nomeArtista, ano):
-        print("1------>",self.selecaoAtiva)
+    
         dfPaletaAnos = self.loadData(nomeArtista)
-        self.ano = ano
         if(self.selecaoAtiva):
+            self.ano = ano
             coordenadas = self.calculateCordenadasSelecao(dfPaletaAnos, ano)
         else:
+            self.ano = 0
             coordenadas = self.calcularCordenadas(dfPaletaAnos)
             
         return self.gerarFigura(coordenadas)
@@ -95,7 +96,9 @@ class Paleta2Vis:
                 family="Courier New, monospace",
                 size=18,
                 color="RebeccaPurple"
-            )
+            ),
+            clickmode='event'
         )
+
 
         return fig

@@ -51,7 +51,8 @@ paleta2Vis = Paleta2Vis()
 def renderImages(listImages):
     divList = []
     for img in listImages:
-        print(img)
+       
+       
         encoded_image = base64.b64encode(open(img, 'rb').read())
         divList.append(html.Div([html.Img(src='data:image/jpg;base64,{}'.format(encoded_image.decode()), className = 'image-workart')],
          className = 'div-image'))
@@ -119,29 +120,27 @@ def update_graph(dropdown_artista, dropdown_visualizacao, clickData):
 
     if(dropdown_visualizacao == 'paleta1'):
         return paleta1Vis.getPaletaGeral(dropdown_artista)
-    elif(dropdown_visualizacao == 'paleta2'):
         
+    elif(dropdown_visualizacao == 'paleta2'):
         if(clickData is None):
             return paleta2Vis.getPaletaPorAnoSelected(dropdown_artista,0)
         else:
-            print('Nao')
             ano = clickData['points'][0]['x']
-            print('click ano', ano)
-            print('paleta ano', paleta2Vis.ano)
             if(paleta2Vis.ano == ano):
-                print('ano = ano')
                 paleta2Vis.selecaoAtiva = False
                 return paleta2Vis.getPaletaPorAnoSelected(dropdown_artista,0)
             else:
                 paleta2Vis.selecaoAtiva = True
                 vis = paleta2Vis.getPaletaPorAnoSelected(dropdown_artista, clickData['points'][0]['x'])
-            return vis
+                return vis
+
     elif(dropdown_visualizacao == 'estilo'):
         if(clickData is None):
             return estiloVis.func_estilo(dropdown_artista)
         else:
             print(clickData)
             return estiloVis.func_estilo(dropdown_artista)
+    
     elif(dropdown_visualizacao == 'genero'):
         if(clickData is None):
             return generoVis.func_genero(dropdown_artista)
@@ -155,23 +154,30 @@ def update_graph(dropdown_artista, dropdown_visualizacao, clickData):
     Input('visualizacao', 'clickData'),
     Input('dropdown_artista', 'value'))
 def display_images(clickData, dropdown_artista):
-    if(clickData is None or (not paleta2Vis.selecaoAtiva)):
+    if(clickData is None):
         return []
     else:
-        dfPaths = funcoes.getPaths(dropdown_artista, clickData['points'][0]['x']) #dfPaths tem titulo, estilo, genero e path
-        listPaths = dfPaths['path'] #pega só o path
-        return renderImages(listPaths)
+        ano = clickData['points'][0]['x']
+        if(paleta2Vis.ano == ano):
+            return []
+        else: 
+            dfPaths = funcoes.getPaths(dropdown_artista, ano) #dfPaths tem titulo, estilo, genero e path
+            listPaths = dfPaths['path'] #pega só o path
+            return renderImages(listPaths)
 
 @app.callback(
     Output('titulo-imagem-container', 'children'),
     Input('visualizacao', 'clickData'))
 def display_titulo_imagens(clickData):
-    if(clickData is None or (not paleta2Vis.selecaoAtiva)):
+    if(clickData is None):
         return []
     else:
         ano = clickData['points'][0]['x']
-        return html.H1(id='titulo-imagem',
-        children= ano
+        if(paleta2Vis.ano == ano):
+            return []
+        else: 
+            return html.H1(id='titulo-imagem',
+            children= ano
         )
 
 
