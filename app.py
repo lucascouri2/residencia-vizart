@@ -2,6 +2,7 @@
 # visit http://127.0.0.1:8050/ in your web browser.
 
 import dash
+from dash.dcc.Dropdown import Dropdown
 import dash_core_components as dcc
 import dash_html_components as html
 from dash.dependencies import Input, Output
@@ -16,6 +17,9 @@ import json
 import base64
 
 app = dash.Dash(__name__)
+
+dropdownVisAtivo = 'genero'
+dropdownArtistaAtivo = 'Vincent van Gogh'
 
 colors = {
     'background': '#111111',
@@ -57,6 +61,7 @@ def renderImages(listImages):
         divList.append(html.Div([html.Img(src='data:image/jpg;base64,{}'.format(encoded_image.decode()), className = 'image-workart')],
          className = 'div-image'))
     return divList
+
 
 app.layout = html.Div(children=[
     html.H1(
@@ -107,22 +112,27 @@ app.layout = html.Div(children=[
 ])
 
 
-
-
-
-
 @app.callback(
     Output('visualizacao', 'figure'),
     Input('dropdown_artista', 'value'),
     Input('dropdown_visualizacao', 'value'),
     Input('visualizacao', 'clickData'))
 def update_graph(dropdown_artista, dropdown_visualizacao, clickData):
+ 
+    # Reset controle das visualizacoes quando muda visualizacao
+    mudouDropdown = False
+    ctxt = dash.callback_context.triggered
+    if(ctxt[0]['prop_id'] == 'dropdown_artista.value' or ctxt[0]['prop_id'] == 'dropdown_visualizacao.value'):
+        mudouDropdown = True
+        paleta2Vis.selecaoAtiva = False
+        paleta2Vis.ano = 0
 
     if(dropdown_visualizacao == 'paleta1'):
         return paleta1Vis.getPaletaGeral(dropdown_artista)
         
     elif(dropdown_visualizacao == 'paleta2'):
-        if(clickData is None):
+        if(clickData is None or mudouDropdown):
+            mudouDropdown = False
             return paleta2Vis.getPaletaPorAnoSelected(dropdown_artista,0)
         else:
             ano = clickData['points'][0]['x']
@@ -138,23 +148,30 @@ def update_graph(dropdown_artista, dropdown_visualizacao, clickData):
         if(clickData is None):
             return estiloVis.func_estilo(dropdown_artista)
         else:
-            print(clickData)
             return estiloVis.func_estilo(dropdown_artista)
     
     elif(dropdown_visualizacao == 'genero'):
         if(clickData is None):
             return generoVis.func_genero(dropdown_artista)
         else:
-            print(clickData)
             return generoVis.func_genero(dropdown_artista)
 
 
 @app.callback(
     Output('image-sub-container', 'children'),
     Input('visualizacao', 'clickData'),
-    Input('dropdown_artista', 'value'))
-def display_images(clickData, dropdown_artista):
-    if(clickData is None):
+    Input('dropdown_artista', 'value'),
+    Input('dropdown_visualizacao', 'value'))
+def display_images(clickData, dropdown_artista,dropdown_visualizacao):
+
+    mudouDropdown = False
+    ctxt = dash.callback_context.triggered
+    if(ctxt[0]['prop_id'] == 'dropdown_artista.value' or ctxt[0]['prop_id'] == 'dropdown_visualizacao.value'):
+        mudouDropdown = True
+
+    print("Image",clickData)
+    if(clickData is None or mudouDropdown):
+        mudouDropdown = False
         return []
     else:
         ano = clickData['points'][0]['x']
@@ -165,11 +182,22 @@ def display_images(clickData, dropdown_artista):
             listPaths = dfPaths['path'] #pega só o path
             return renderImages(listPaths)
 
+
 @app.callback(
     Output('titulo-imagem-container', 'children'),
-    Input('visualizacao', 'clickData'))
-def display_titulo_imagens(clickData):
-    if(clickData is None):
+    Input('visualizacao', 'clickData'),
+    Input('dropdown_artista', 'value'),
+    Input('dropdown_visualizacao', 'value'))
+def display_titulo_imagens(clickData, dropdown_artista, dropdown_visualizacao):
+    mudouDropdown = False
+    ctxt = dash.callback_context.triggered
+    if(ctxt[0]['prop_id'] == 'dropdown_artista.value' or ctxt[0]['prop_id'] == 'dropdown_visualizacao.value'):
+        mudouDropdown = True
+    #     clickData = None
+
+    print("Titulo",clickData)
+    if(clickData is None or mudouDropdown):
+        mudouDropdown = False
         return []
     else:
         ano = clickData['points'][0]['x']
@@ -180,13 +208,6 @@ def display_titulo_imagens(clickData):
             children= ano
         )
 
-
-# @app.callback(
-#     Output('visualizacao', 'figure'),
-#     Input('visualizacao', 'clickData'),
-#     Input('dropdown_artista', 'value'))
-# def update_graph_onclick(clickData, dropdown_artista):
-#     return paleta2Vis.getPaletaPorAnoSelected(dropdown_artista, clickData.x)
 
 if __name__ == '__main__':
     app.run_server(debug=True)
