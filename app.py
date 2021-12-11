@@ -18,9 +18,6 @@ import base64
 
 app = dash.Dash(__name__)
 
-dropdownVisAtivo = 'genero'
-dropdownArtistaAtivo = 'Vincent van Gogh'
-
 colors = {
     'background': '#111111',
     'text': '#7FDBFF'
@@ -169,7 +166,6 @@ def display_images(clickData, dropdown_artista,dropdown_visualizacao):
     if(ctxt[0]['prop_id'] == 'dropdown_artista.value' or ctxt[0]['prop_id'] == 'dropdown_visualizacao.value'):
         mudouDropdown = True
 
-    print("Image",clickData)
     if(clickData is None or mudouDropdown):
         mudouDropdown = False
         return []
@@ -193,9 +189,7 @@ def display_titulo_imagens(clickData, dropdown_artista, dropdown_visualizacao):
     ctxt = dash.callback_context.triggered
     if(ctxt[0]['prop_id'] == 'dropdown_artista.value' or ctxt[0]['prop_id'] == 'dropdown_visualizacao.value'):
         mudouDropdown = True
-    #     clickData = None
 
-    print("Titulo",clickData)
     if(clickData is None or mudouDropdown):
         mudouDropdown = False
         return []

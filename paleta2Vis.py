@@ -75,8 +75,10 @@ class Paleta2Vis:
                     marker_symbol='square',
                     marker=dict(
                         color= color,
-                        size=21,
+                        size=11,
                         opacity=opacity,
+                        line=dict(width=1,
+                        color='#E5E5E5')
                     ),
                     showlegend=False
                 )
