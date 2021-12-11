@@ -69,8 +69,9 @@ class Paleta2Vis:
                     mode='markers',
                     x=[x],
                     y=[y],
-                    hovertemplate = 'Ano: %{x}<br>RGB: %{text}',#'Ano: %{x}<br>RGB: %{cor}',
-                    text = [cor_rgb], #se quiser o hexa é só usar [color]
+                    hovertemplate = 'Ano: %{x}<br>Cor: %{text}',#'Ano: %{x}<br>RGB: %{cor}',
+                    text = [color],
+                    #text = [cor_rgb], #se quiser o hexa é só usar [color]
                     #text = ['Custom text {}'.format(i + 1) for i in range(5)],
                     marker_symbol='square',
                     marker=dict(
