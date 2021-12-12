@@ -1,3 +1,23 @@
+#titulo-app{
+    margin: auto;
+    width: 100%;
+    text-align: center;
+}
+
+#titulo{
+    font-family: 'Courier New', monospace; 
+    margin-bottom: 0px;
+    font-weight: lighter;
+    color: #232023;
+}
+
+#subtitulo{
+    font-family: 'Courier New', monospace;
+    font-weight: lighter;
+    margin-top: 0px;
+    color: #41424c;
+}
+
 #image-sub-container {
     height:180px;
     width: 90%;
@@ -13,6 +33,12 @@
 
 #titulo-imagem{
     margin-top: 0;
+    margin-bottom: 10;
+    font-weight: lighter;
+    font-family: 'Courier New', monospace;
+    color: #41424c;
+    /* text-align: left;
+    margin-left: 80px; */
 }
     
 .div-image{
