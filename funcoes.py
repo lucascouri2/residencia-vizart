@@ -37,6 +37,7 @@ def leituraDados():
 def getPaths(artista, ano):
     df = leituraDados()
     df = df[df['artistName']==artista]
-    df = df[df['completitionYear']==ano]
+
+    df = df[df['completitionYear']==int(ano)]
     #return df['path'].to_list()
     return df[['title', 'genre', 'style', 'path']]
