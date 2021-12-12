@@ -31,7 +31,6 @@ class Paleta2Vis:
 
         copyDf.loc[copyDf['completitionYear'] == ano, 'selecionado'] = True
         retorno = list(copyDf[['completitionYear','ordemVis','hex','selecionado']].to_records(index=False))
-        #print(retorno)
         return retorno
 
     # Cria a visualizacao do plotly
