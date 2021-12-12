@@ -49,13 +49,15 @@ paleta2Vis = Paleta2Vis()
 # )
 
 
-def renderImages(listImages):
+def renderImages(listPaths, listTitles, listStyles, listGenre):
     divList = []
-    for img in listImages:
-       
+    for img, titulo, estilo, genero in zip(listPaths, listTitles, listStyles,listGenre):
        
         encoded_image = base64.b64encode(open(img, 'rb').read())
-        divList.append(html.Div([html.Img(src='data:image/jpg;base64,{}'.format(encoded_image.decode()), className = 'image-workart')],
+        divList.append(html.Div([
+            html.Img(src='data:image/jpg;base64,{}'.format(encoded_image.decode()), className = 'image-workart', 
+            title=f"Título: {titulo}\nEstilo: {estilo}\nGênero: {genero}"),
+        ],
          className = 'div-image'))
     return divList
 
@@ -176,7 +178,10 @@ def display_images(clickData, dropdown_artista,dropdown_visualizacao):
         else: 
             dfPaths = funcoes.getPaths(dropdown_artista, ano) #dfPaths tem titulo, estilo, genero e path
             listPaths = dfPaths['path'] #pega só o path
-            return renderImages(listPaths)
+            listTitles = dfPaths['title']
+            listStyles = dfPaths['style']
+            listGenre = dfPaths['genre']
+            return renderImages(listPaths, listTitles, listStyles, listGenre)
 
 
 @app.callback(
