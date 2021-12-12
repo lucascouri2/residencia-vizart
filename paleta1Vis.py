@@ -15,6 +15,8 @@ def getPaletaGeral(nomeArtista):
     paletaCores = loadPaletaCores(nomeArtista)
 
     x=dfVis.columns
+    x=x.to_list()
+    x=[int(float(i)) for i in x]
     fig = go.Figure()
 
     freqAnosArray = dfVis.values
