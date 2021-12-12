@@ -87,7 +87,7 @@ app.layout = html.Div(children=[
                 id='dropdown_visualizacao',
                 #options=[{'label': i, 'value': i} for i in listaVisualizacoes],
                 options=[{'label': j, 'value': i} for i, j in listaVisualizacoes],
-                value='genero'
+                value='estilo'
             )
         ], style={'width': '48%', 'float': 'right', 'display': 'inline-block', 'font-family': '"Courier New", monospace'})
     ]),
@@ -143,16 +143,18 @@ def update_graph(dropdown_artista, dropdown_visualizacao, clickData):
                 return vis
 
     elif(dropdown_visualizacao == 'estilo'):
-        if(clickData is None):
-            return estiloVis.func_estilo(dropdown_artista)
-        else:
-            return estiloVis.func_estilo(dropdown_artista)
+        return estiloVis.func_estilo(dropdown_artista)
+        #if(clickData is None):
+        #    return estiloVis.func_estilo(dropdown_artista)
+        #else:
+        #    return estiloVis.func_estilo(dropdown_artista)
     
     elif(dropdown_visualizacao == 'genero'):
-        if(clickData is None):
-            return generoVis.func_genero(dropdown_artista)
-        else:
-            return generoVis.func_genero(dropdown_artista)
+        return generoVis.func_genero(dropdown_artista)
+        #if(clickData is None):
+        #    return generoVis.func_genero(dropdown_artista)
+        #else:
+        #    return generoVis.func_genero(dropdown_artista)
 
 
 @app.callback(
@@ -208,4 +210,4 @@ def display_titulo_imagens(clickData, dropdown_artista, dropdown_visualizacao):
 
 
 if __name__ == '__main__':
-    app.run_server(debug=True)
+    app.run_server(debug=False)
