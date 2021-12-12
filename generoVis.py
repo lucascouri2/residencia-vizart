@@ -30,6 +30,7 @@ def func_genero(artista = 'van Gogh Vincent '):
     top10 = df[df['artistName']==artista]['genre'].value_counts()[:10].index.to_list()
     dfVis = dfVis[dfVis['genre'].isin(top10)]
 
+
     x=dfVis['completitionYear'].unique()
     x.sort()
 
@@ -55,7 +56,7 @@ def func_genero(artista = 'van Gogh Vincent '):
             name = genero
     ))
     
-    titulo='Gêneros ao longo dos anos'
+    titulo='Gêneros mais populares ao longo dos anos'
     eixox='Ano'
     eixoy='Proporção dos gêneros'
     legenda='Gênero'
@@ -72,6 +73,9 @@ def func_genero(artista = 'van Gogh Vincent '):
             color="RebeccaPurple"
         )
     )
+
+    if artista == 'Picasso Pablo':
+        fig.update_layout(xaxis_range=(1890, 1972))
 
     return fig
     # fig.update_layout(yaxis_range=(0, 100))
