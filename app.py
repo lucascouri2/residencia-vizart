@@ -63,14 +63,14 @@ def renderImages(listPaths, listTitles, listStyles, listGenre):
 
 
 app.layout = html.Div(children=[
-    html.H1(
-        children='Hello Dash',
-        style={
-            'textAlign': 'center',
-            'color': colors['text']
-        }
-    ),
-
+    html.Div([
+        html.H1(
+        children='VisArt',
+        id = 'titulo'),
+        html.H5(
+        children='A EVOLUÇÃO DA ARTE',
+        id = 'subtitulo')
+        ], id = 'titulo-app'),
     html.Div([
 
         html.Div([
@@ -80,16 +80,16 @@ app.layout = html.Div(children=[
                 options=[{'label': j, 'value': i} for i,j in listaArtistas],
                 value='van Gogh Vincent '
             )
-        ], style={'width': '48%', 'display': 'inline-block'}),
+        ], style={'width': '48%', 'display': 'inline-block',  'font-family': '"Courier New", monospace'}),
 
         html.Div([
             dcc.Dropdown(
                 id='dropdown_visualizacao',
                 #options=[{'label': i, 'value': i} for i in listaVisualizacoes],
                 options=[{'label': j, 'value': i} for i, j in listaVisualizacoes],
-                value='genero'#value='paleta1'
+                value='genero'
             )
-        ], style={'width': '48%', 'float': 'right', 'display': 'inline-block'})
+        ], style={'width': '48%', 'float': 'right', 'display': 'inline-block', 'font-family': '"Courier New", monospace'})
     ]),
 
     html.Div([html.Pre(id='hover-data')], style={
@@ -99,7 +99,6 @@ app.layout = html.Div(children=[
 
     dcc.Graph(
         id='visualizacao'
-        #figure=generoVis.func_genero()
     ),
 
     html.Div(id = 'image-container',
