@@ -55,6 +55,11 @@ class Paleta2Vis:
 
     def gerarFigura(self,coordenadas):
         fig = go.Figure()
+        if (len(coordenadas)/10)<55:
+            tamanho_paleta = 21
+        else :
+            tamanho_paleta = 11
+
         for x, y, color, selecionado in coordenadas:
             
             cor_rgb = ImageColor.getcolor(color, "RGB")
@@ -75,10 +80,10 @@ class Paleta2Vis:
                     marker_symbol='square',
                     marker=dict(
                         color= color,
-                        size=11,
-                        opacity=opacity,
-                        line=dict(width=1,
-                        color='#E5E5E5')
+                        size=tamanho_paleta,
+                        opacity=opacity#,
+                        #line=dict(width=1,
+                        #color='#E5E5E5')
                     ),
                     showlegend=False
                 )
