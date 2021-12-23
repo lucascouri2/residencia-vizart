@@ -3,10 +3,10 @@ import plotly.graph_objects as go
 
 # Carrega dados e retorn o dataframe para a visualizacao
 def loadData(nomeArtista):
-    return pd.read_csv(f'dataset_visualizacoes/{nomeArtista}-area.csv')
+    return pd.read_csv(f'data/vis-paleta1/{nomeArtista}-area.csv')
 
 def loadPaletaCores(nomeArtista):
-    return pd.read_csv(f'paletas/final_artistas/paleta_{nomeArtista}.csv')
+    return pd.read_csv(f'data/paletas/paleta_{nomeArtista}.csv')
 
 
 # Cria a visualizacao do plotly

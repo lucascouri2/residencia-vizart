@@ -5,12 +5,13 @@ import plotly_express as px
 def preprocessoDados():
 
     dfList = []
-    dfList.append(pd.read_json('dataset_artistas/andy-warhol.json', orient='records'))
-    dfList.append(pd.read_json('dataset_artistas/frida-kahlo.json', orient='records'))
-    dfList.append(pd.read_json('dataset_artistas/sandro-botticelli.json', orient='records'))
-    dfList.append(pd.read_json('dataset_artistas/vincent-van-gogh.json', orient='records'))
-    dfList.append(pd.read_json('dataset_artistas/pablo-picasso.json', orient='records'))
-    dfList.append(pd.read_json('dataset_artistas/piet-mondrian.json', orient='records'))
+    dfList.append(pd.read_json('data/artistas/andy-warhol.json', orient='records'))
+    dfList.append(pd.read_json('data/artistas/frida-kahlo.json', orient='records'))
+    dfList.append(pd.read_json('data/artistas/sandro-botticelli.json', orient='records'))
+    dfList.append(pd.read_json('data/artistas/vincent-van-gogh.json', orient='records'))
+    dfList.append(pd.read_json('data/artistas/pablo-picasso.json', orient='records'))
+    dfList.append(pd.read_json('data/artistas/piet-mondrian.json', orient='records'))
+
 
     df = pd.concat(dfList, ignore_index=True)
     df[df.duplicated(['artistName'], keep=False)]

@@ -13,7 +13,7 @@ class Paleta2Vis:
 
     # Carrega dados e retorn o dataframe para a visualizacao
     def loadData(self,nomeArtista):
-        df = pd.read_csv(f'paletas/final_artistas/paleta_anos_{nomeArtista}.csv')
+        df = pd.read_csv(f'data/vis-paleta2/paleta_anos_{nomeArtista}.csv')
         df['selecionado'] = False
         return df
 
