@@ -1,4 +1,4 @@
-# Vizart 
+# Visart 
 
 ![gif-visart](https://github.com/lucascouri2/residencia-vizart/assets/2599977/67bb4870-ca06-497f-a759-92b36774c64c)
 
